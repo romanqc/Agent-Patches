@@ -1,35 +1,26 @@
 version: 2.1
 
-executors:
-  python-executor:
-    docker:
-      - image: cimg/python:3.10
-
 jobs:
-  build-and-test:
-    executor: python-executor
-    working_directory: ~/repo
+  test:
+    docker:
+      - image: cimg/python:3.10  # CircleCI Python Docker image
+    working_directory: ~/repo/backend
     steps:
       - checkout
-
       - run:
-          name: Install dependencies
+          name: Set up Python environment
           command: |
-            cd backend
             python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            pip install pytest
-
       - run:
-          name: Run tests with pytest
+          name: Run tests with dummy Weaviate environment
           command: |
-            cd backend
-            # Set WEAVIATE_URL to a dummy value to prevent import error
             export WEAVIATE_URL="http://dummy-url:8080"
+            export WEAVIATE_API_KEY="dummy-api-key"
             PYTHONPATH=./app venv/bin/pytest app/tests/
 
 workflows:
-  build:
+  test:
     jobs:
-      - build-and-test
+      - test
