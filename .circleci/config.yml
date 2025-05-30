@@ -25,6 +25,8 @@ jobs:
           name: Run tests with pytest
           command: |
             cd backend
+            # Set WEAVIATE_URL to a dummy value to prevent import error
+            export WEAVIATE_URL="http://dummy-url:8080"
             PYTHONPATH=./app venv/bin/pytest app/tests/
 
 workflows:
