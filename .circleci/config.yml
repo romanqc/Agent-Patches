@@ -1,22 +1,31 @@
 version: 2.1
 
+executors:
+  python-executor:
+    docker:
+      - image: cimg/python:3.10
+
 jobs:
   build-and-test:
-    docker:
-      - image: cimg/python:3.11
+    executor: python-executor
+    working_directory: ~/repo
     steps:
       - checkout
+
       - run:
           name: Install dependencies
           command: |
+            cd backend
             python -m venv venv
             . venv/bin/activate
-            pip install -r backend/requirements.txt
+            pip install -r requirements.txt
+            pip install pytest
+
       - run:
-          name: Run tests
+          name: Run tests with pytest
           command: |
-            . venv/bin/activate
-            pytest backend/tests
+            cd backend
+            PYTHONPATH=./app venv/bin/pytest app/tests/
 
 workflows:
   build:
