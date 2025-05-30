@@ -3,8 +3,8 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: cimg/python:3.10  # CircleCI Python Docker image
-    working_directory: ~/repo/backend
+      - image: cimg/python:3.10
+    working_directory: ~/project
     steps:
       - checkout
       - run:
@@ -12,13 +12,13 @@ jobs:
           command: |
             python -m venv venv
             . venv/bin/activate
-            pip install -r requirements.txt
+            pip install -r backend/requirements.txt
       - run:
           name: Run tests with dummy Weaviate environment
           command: |
             export WEAVIATE_URL="http://dummy-url:8080"
             export WEAVIATE_API_KEY="dummy-api-key"
-            PYTHONPATH=./app venv/bin/pytest app/tests/
+            PYTHONPATH=./backend/app venv/bin/pytest backend/app/tests/
 
 workflows:
   test:
