@@ -1,11 +1,10 @@
-from fastapi import APIRouter
-from app.services.weaviate_client import client
-
+from fastapi import APIRouter, Depends
+from app.services.weaviate_client import get_client
 
 router = APIRouter()
 
 @router.get("/ask")
-def ask_agent(question: str):
+def ask_agent(question: str, client = Depends(get_client)):
     """
     Stub: In the future use LangChain or RAG.
     For now, list schema classes in Weaviate.
@@ -18,4 +17,5 @@ def ask_agent(question: str):
 
 @router.get("/healthz")
 async def health_check():
-    return {"status": "healthy"}
+    return {"status": "ok"}  # ✅ Match test expectation
+
