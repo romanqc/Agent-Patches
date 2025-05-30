@@ -1,21 +1,21 @@
-# backend/app/api/routes.py
-
 from fastapi import APIRouter
-from app.services.operant_ai import query_operant_ai
+from app.services.weaviate_client import client
+
 
 router = APIRouter()
 
 @router.get("/ask")
 def ask_agent(question: str):
     """
-    Ask the Operant AI agent a question.
+    Stub: In the future use LangChain or RAG.
+    For now, list schema classes in Weaviate.
     """
-    response = query_operant_ai(question)
-    return {"response": response}
+    try:
+        schema = client.collections.list_all()
+        return {"response": f"Schema: {schema}"}
+    except Exception as e:
+        return {"error": str(e)}
 
 @router.get("/healthz")
 async def health_check():
-    """
-    Health check endpoint.
-    """
     return {"status": "healthy"}

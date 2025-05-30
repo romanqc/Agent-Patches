@@ -1,16 +1,16 @@
 from fastapi import FastAPI
-from app.api import routes
+from app.api.routes import router as api_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
 # Include your API routes
-app.include_router(routes.router)
+app.include_router(api_router)
 
-from fastapi.middleware.cors import CORSMiddleware
-
+# CORS for frontend dev
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # frontend dev port
+    allow_origins=["http://localhost:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
