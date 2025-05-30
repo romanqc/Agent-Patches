@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+ENV/
+env.bak/
+
+# VSCode & IDE settings
+.vscode/
+.idea/
+
+# Python virtualenv
+*.env
+
+# dotenv file (secrets!)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker
+*.log
+*.pid
+*.db
+*.sqlite3
+
+# Pytest cache
+.pytest_cache/
+.cache/
+
+# CircleCI local artifacts
+.circleci/artifacts/
+.circleci/cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# OneDrive temp files (since you're using OneDrive)
+~$*

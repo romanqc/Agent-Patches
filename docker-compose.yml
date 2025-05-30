@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  operant-ai-gatekeeper:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      OPERANT_TOKEN: ${OPERANT_TOKEN}
+      GATEKEEPER_MODE: true
+      GATEKEEPER_NAME: ${GATEKEEPER_NAME}
+    networks:
+      - operant_network
+    volumes:
+      - .:/app  # Mount current directory into container (optional if using --reload)
+
+networks:
+  operant_network:
+    driver: bridge

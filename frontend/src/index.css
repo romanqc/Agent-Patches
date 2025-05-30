@@ -1,0 +1,82 @@
+:root {
+  /* Typography & Base */
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Theme Colors - Dark Mode */
+  --color-bg: #121212;
+  --color-text: #f2f2f2;
+  --color-muted: #8a8f99;
+  --color-primary: #1e1f4b;
+  --color-accent-1: #00ffd1;
+  --color-accent-2: #ff5470;
+  --color-success: #56d364;
+  --color-warning: #ffc857;
+  --color-link: #646cff;
+  --color-link-hover: #535bf2;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-text: #213547;
+    --color-muted: #6c7382;
+    --color-primary: #1e1f4b;
+    --color-accent-1: #00ccb0;
+    --color-accent-2: #e63f5c;
+    --color-success: #48b455;
+    --color-warning: #e0aa39;
+    --color-link: #747bff;
+    --color-link-hover: #5e63e3;
+  }
+}
+
+/* Base Styles */
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+a {
+  font-weight: 500;
+  color: var(--color-link);
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--color-link-hover);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--color-accent-1);
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
